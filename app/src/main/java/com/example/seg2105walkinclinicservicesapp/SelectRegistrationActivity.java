@@ -12,6 +12,7 @@ public class SelectRegistrationActivity extends AppCompatActivity {
 
     private Button returnButton;
     private LinearLayout patientSignup;
+    private LinearLayout clinicSignup;
     private Intent clinicRequest;
 
     @Override
@@ -40,7 +41,13 @@ public class SelectRegistrationActivity extends AppCompatActivity {
         });
 
 
-
+        clinicSignup = (LinearLayout) findViewById(R.id.clinicSignup);
+        clinicSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setClinicSignup(v);
+            }
+        });
     }
 
 
@@ -50,7 +57,7 @@ public class SelectRegistrationActivity extends AppCompatActivity {
     }
 
     private void setClinicSignup(View view) {
-        Intent clinicSignup = new Intent( this, ClinicSignupActivity.class);
+        Intent clinicSignup = new Intent(this, ClinicSignupActivity.class);
         startActivity(clinicSignup);
     }
 

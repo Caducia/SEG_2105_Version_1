@@ -10,10 +10,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,10 +69,10 @@
             android:layout_weight="1"
             android:backgroundTint="@color/colorPrimary"
             android:hint="Password"
+            android:inputType="textPassword"
             android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorPrimary"
-            android:textSize="24sp"
-            android:inputType="textPassword"/>
+            android:textSize="24sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,7 +99,8 @@
                 android:layout_height="48dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:buttonTint="#FFFFFF"
+                android:gravity="center|left"
                 android:shadowColor="@color/colorPrimary"
                 android:text="Remember Me"
                 android:textColor="@color/colorPrimary"
@@ -127,6 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|center"
+            android:paddingBottom="8dp"
             android:text="Not A Member?"
             android:textColor="@color/colorPrimary" />
 
