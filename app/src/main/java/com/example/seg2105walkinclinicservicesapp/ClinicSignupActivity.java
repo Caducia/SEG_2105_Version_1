@@ -62,9 +62,9 @@ public class ClinicSignupActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Clinic clinic = new Clinic(clinicID, clinicName, clinicPhoneNumber, clinicEmail, clinicPassword);
+                    Clinic clinic = new Clinic(clinicID, clinicName, clinicEmail, clinicPhoneNumber, clinicPassword);
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    FirebaseDatabase.getInstance().getReference("Doctors")
+                    FirebaseDatabase.getInstance().getReference("ClinicEmployees")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(clinic).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

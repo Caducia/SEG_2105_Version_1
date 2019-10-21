@@ -63,7 +63,7 @@ public class PatientSignupActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Patient patient = new Patient(firstName, lastName, studentNumber, email, password);
+                    Patient patient = new Patient(firstName, lastName, studentNumber, email, password,phoneNumber);
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     FirebaseDatabase.getInstance().getReference("Students")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -86,3 +86,4 @@ public class PatientSignupActivity extends AppCompatActivity {
 
     }
 }
+

@@ -6,13 +6,17 @@ public class Patient {
     private String email;
     private String studentNo;
     private String password;
+    private String phoneNumber;
 
-    public Patient(String firstName, String lastName, String studentNo, String email, String password){
+    public Patient(){}
+
+    public Patient(String firstName, String lastName, String studentNo, String email, String password, String phoneNumber){
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentNo = studentNo;
         this.email = email;
         this.password = password;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getFirstName() {
@@ -30,6 +34,8 @@ public class Patient {
     public String getStudentNo() {
         return studentNo;
     }
+
+    public String getPhoneNumber() { return phoneNumber; }
 
     public String getPassword() {
         return password;

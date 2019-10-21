@@ -55,8 +55,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void loginUser(View v){
         String email = emailInput.getText().toString();
-        String password = emailInput.getText().toString();
-        boolean login = false;
+        String password = passwordInput.getText().toString();
+
+
+        final boolean login = false;
+        user = null;
+        mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -65,9 +69,13 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
 //                            Log.d(TAG, "signInWithEmail:success");
                             user = mAuth.getCurrentUser();
-                            Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Authentication passed.", Toast.LENGTH_SHORT).show();
 //                            updateUI(user);
 //                            login = false;
+                            Intent loginIntent = new Intent(MainActivity.this, WelcomeScreen.class);
+                            loginIntent.putExtra("email" , emailInput.getText().toString());
+                            loginIntent.putExtra("password" , passwordInput.getText().toString());
+                            startActivity(loginIntent);
 
 
                         } else {
@@ -81,10 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
 
                 });
-        if(user != null){
-            Intent loginIntent = new Intent(this, WelcomeScreen.class);
-            startActivity(loginIntent);
-        }
     }
 
 

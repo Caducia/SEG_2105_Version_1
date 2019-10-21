@@ -8,6 +8,8 @@ public class Clinic {
     private String clinicPhone;
     private String clinicPassword;
 
+    public Clinic(){}
+
     public Clinic(String clinicIDName, String clinicName, String clinicEmail, String clinicPhone, String clinicPassword){
         this.clinicIDName = clinicIDName;
         this.clinicName = clinicName;

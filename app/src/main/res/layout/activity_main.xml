@@ -118,6 +118,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@drawable/loginbutton"
+            android:onClick="loginUser"
             android:text="Login"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp" />
