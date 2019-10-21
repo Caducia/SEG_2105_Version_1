@@ -16,6 +16,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class PatientSignupActivity extends AppCompatActivity {
 
     private EditText firstNameEditText;
@@ -25,6 +29,13 @@ public class PatientSignupActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private EditText confirmPasswordEditText;
     private EditText studentNumberEditText;
+
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String studentNumber;
+    private String email;
+    private String password;
 
     FirebaseAuth mAuth;
     FirebaseDatabase mDatabase;
@@ -50,12 +61,14 @@ public class PatientSignupActivity extends AppCompatActivity {
     }
 
     public void signUpPatient(View v){
-        final String firstName = firstNameEditText.getText().toString();
-        final String lastName = lastNameEditText.getText().toString();
-        final String phoneNumber = phoneNumberEditText.getText().toString();
-        final String studentNumber = studentNumberEditText.getText().toString();
-        final String email = emailEditText.getText().toString();
-        final String password = passwordEditText.getText().toString();
+        firstName = firstNameEditText.getText().toString();
+        lastName = lastNameEditText.getText().toString();
+        phoneNumber = phoneNumberEditText.getText().toString();
+        studentNumber = studentNumberEditText.getText().toString();
+        email = emailEditText.getText().toString();
+
+
+        password = passwordEditText.getText().toString();
 
 
 
@@ -63,6 +76,7 @@ public class PatientSignupActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+
                     Patient patient = new Patient(firstName, lastName, studentNumber, email, password,phoneNumber);
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     FirebaseDatabase.getInstance().getReference("Students")
@@ -84,6 +98,34 @@ public class PatientSignupActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public static String encryptString(String input)
+    {
+        try {
+            // getInstance() method is called with algorithm SHA-512
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            byte[] byteDigestions = messageDigest.digest(input.getBytes());
+
+            // Convert byte array into signum representation
+            BigInteger number = new BigInteger(1, byteDigestions);
+
+            // Convert message digest into hex value
+            String hashtext = number.toString(16);
+
+            // Add preceding 0s to make it 32 bit
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+
+            // return the HashText
+            return hashtext;
+        }
+
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

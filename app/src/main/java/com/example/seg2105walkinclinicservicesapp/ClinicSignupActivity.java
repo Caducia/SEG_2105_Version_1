@@ -16,6 +16,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class ClinicSignupActivity extends AppCompatActivity {
     private EditText idEditText;
     private EditText clinicNameEditText;
@@ -23,6 +27,12 @@ public class ClinicSignupActivity extends AppCompatActivity {
     private EditText clinicPhoneNumberEditText;
     private EditText clinicPasswordEditText;
     private EditText clinicConfirmPasswordEditText;
+
+    private String clinicID;
+    private String clinicName;
+    private String clinicPhoneNumber;
+    private String clinicEmail;
+    private String clinicPassword;
 
     FirebaseAuth mAuth;
     FirebaseDatabase mDatabase;
@@ -47,21 +57,25 @@ public class ClinicSignupActivity extends AppCompatActivity {
     }
 
     public void signUpClinic(View v){
-        final String clinicID = idEditText.getText().toString();
-        final String clinicName = clinicNameEditText.getText().toString();
-        final String clinicPhoneNumber = clinicPhoneNumberEditText.getText().toString();
-        final String clinicEmail = clinicEmailEditText.getText().toString();
-        final String clinicPassword = clinicPasswordEditText.getText().toString();
+
 
         // Might need later
         //final String password = passwordEditText.getText().toString();
 
 
+        clinicEmail = clinicEmailEditText.getText().toString();
+        clinicPassword = clinicPasswordEditText.getText().toString();
+        clinicID = idEditText.getText().toString();
+        clinicName = clinicNameEditText.getText().toString();
+        clinicPhoneNumber = clinicPhoneNumberEditText.getText().toString();
 
         mAuth.createUserWithEmailAndPassword(clinicEmail,clinicPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
+
                 if(task.isSuccessful()){
+                    clinicPassword = encryptString(clinicPassword);
                     Clinic clinic = new Clinic(clinicID, clinicName, clinicEmail, clinicPhoneNumber, clinicPassword);
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     FirebaseDatabase.getInstance().getReference("ClinicEmployees")
@@ -83,5 +97,33 @@ public class ClinicSignupActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public static String encryptString(String input)
+    {
+        try {
+            // getInstance() method is called with algorithm SHA-512
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            byte[] byteDigestions = messageDigest.digest(input.getBytes());
+
+            // Convert byte array into signum representation
+            BigInteger number = new BigInteger(1, byteDigestions);
+
+            // Convert message digest into hex value
+            String hashtext = number.toString(16);
+
+            // Add preceding 0s to make it 32 bit
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+
+            // return the HashText
+            return hashtext;
+        }
+
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
