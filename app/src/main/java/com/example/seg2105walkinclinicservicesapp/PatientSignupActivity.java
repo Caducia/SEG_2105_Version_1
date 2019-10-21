@@ -72,31 +72,44 @@ public class PatientSignupActivity extends AppCompatActivity {
 
 
 
-        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-
-                    Patient patient = new Patient(firstName, lastName, studentNumber, email, password,phoneNumber);
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    FirebaseDatabase.getInstance().getReference("Students")
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                            .setValue(patient).addOnCompleteListener(new OnCompleteListener<Void>() {
+        if(confirmPasswordEditText.getText().toString().trim().equals(password.trim()) && firstName.length() >= 2 && lastName.length() >= 2){
+            try{
+                Integer.parseInt(phoneNumber);
+                if(phoneNumber.length() >= 10){
+                    mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task) {
+                        public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(PatientSignupActivity.this, "User successfully registered", Toast.LENGTH_LONG).show();
-                                finish();
-                            }else{
-                                Toast.makeText(PatientSignupActivity.this, "Failed to Register User", Toast.LENGTH_LONG).show();
-                                finish();
+
+                                Patient patient = new Patient(firstName.trim(), lastName.trim(), studentNumber.trim(), email.trim(), password.trim(),phoneNumber.trim());
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                FirebaseDatabase.getInstance().getReference("Students")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .setValue(patient).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(PatientSignupActivity.this, "User successfully registered", Toast.LENGTH_LONG).show();
+                                            finish();
+                                        }else{
+                                            Toast.makeText(PatientSignupActivity.this, "Failed to Register User", Toast.LENGTH_LONG).show();
+                                            finish();
+                                        }
+                                    }
+                                });
+
                             }
                         }
                     });
-
                 }
+            }catch(Exception e){
+                Toast.makeText(PatientSignupActivity.this, "Make sure a proper number is used", Toast.LENGTH_LONG).show();
             }
-        });
+
+        }else{
+            Toast.makeText(PatientSignupActivity.this, "Make sure passwords match", Toast.LENGTH_LONG).show();
+        }
+
 
     }
 

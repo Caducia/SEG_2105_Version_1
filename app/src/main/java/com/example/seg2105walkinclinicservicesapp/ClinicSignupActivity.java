@@ -69,33 +69,45 @@ public class ClinicSignupActivity extends AppCompatActivity {
         clinicName = clinicNameEditText.getText().toString();
         clinicPhoneNumber = clinicPhoneNumberEditText.getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(clinicEmail,clinicPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-
-                if(task.isSuccessful()){
-                    clinicPassword = encryptString(clinicPassword);
-                    Clinic clinic = new Clinic(clinicID, clinicName, clinicEmail, clinicPhoneNumber, clinicPassword);
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    FirebaseDatabase.getInstance().getReference("ClinicEmployees")
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                            .setValue(clinic).addOnCompleteListener(new OnCompleteListener<Void>() {
+        if(clinicConfirmPasswordEditText.getText().toString().trim().equals(clinicPassword.trim()) && clinicName.length() >= 2) {
+            try {
+                Integer.parseInt(clinicPhoneNumber);
+                if (clinicPhoneNumber.length() >= 10) {
+                    mAuth.createUserWithEmailAndPassword(clinicEmail,clinicPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task) {
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+
                             if(task.isSuccessful()){
-                                Toast.makeText(ClinicSignupActivity.this, "User successfully registered", Toast.LENGTH_LONG).show();
-                                finish();
-                            }else{
-                                Toast.makeText(ClinicSignupActivity.this, "Failed to Register User", Toast.LENGTH_LONG).show();
-                                finish();
+                                clinicPassword = encryptString(clinicPassword);
+                                Clinic clinic = new Clinic(clinicID, clinicName, clinicEmail, clinicPhoneNumber, clinicPassword);
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                FirebaseDatabase.getInstance().getReference("ClinicEmployees")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .setValue(clinic).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(ClinicSignupActivity.this, "User successfully registered", Toast.LENGTH_LONG).show();
+                                            finish();
+                                        }else{
+                                            Toast.makeText(ClinicSignupActivity.this, "Failed to Register User", Toast.LENGTH_LONG).show();
+                                            finish();
+                                        }
+                                    }
+                                });
+
                             }
                         }
                     });
-
                 }
+            } catch (Exception e) {
+                Toast.makeText(ClinicSignupActivity.this, "Make sure a correct phone number is used", Toast.LENGTH_LONG).show();
             }
-        });
+
+        }else{
+            Toast.makeText(ClinicSignupActivity.this, "Make Sure passwords match", Toast.LENGTH_LONG).show();
+        }
 
     }
 
