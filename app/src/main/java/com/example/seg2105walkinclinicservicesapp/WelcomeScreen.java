@@ -135,6 +135,31 @@ public class WelcomeScreen extends AppCompatActivity {
 
                                     }
                                 });
+
+
+                                rDatabase = mDatabase.getReference("Administrators");
+                                query = rDatabase.orderByKey().equalTo(uID);
+                                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                            if(snapshot.getKey().equals(uID)){
+                                                Admin admin = snapshot.getValue(Admin.class);
+
+                                                Intent loginIntent = new Intent(WelcomeScreen.this, AdminPage.class);
+                                                loginIntent.putExtra("email" , admin.getEmail());
+                                                loginIntent.putExtra("password" , admin.getaAminPassword());
+                                                startActivity(loginIntent);
+                                            }
+
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
                             }catch(Exception e){
 
                             }

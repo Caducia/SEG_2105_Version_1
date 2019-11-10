@@ -1,8 +1,5 @@
 package com.example.seg2105walkinclinicservicesapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -19,6 +16,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class PatientSignupActivity extends AppCompatActivity {
 

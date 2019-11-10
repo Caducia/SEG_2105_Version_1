@@ -71,7 +71,7 @@ public class ClinicSignupActivity extends AppCompatActivity {
 
         if(clinicConfirmPasswordEditText.getText().toString().trim().equals(clinicPassword.trim()) && clinicName.length() >= 2) {
             try {
-                Integer.parseInt(clinicPhoneNumber);
+                Long.parseLong(clinicPhoneNumber);
                 if (clinicPhoneNumber.length() >= 10) {
                     mAuth.createUserWithEmailAndPassword(clinicEmail,clinicPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override

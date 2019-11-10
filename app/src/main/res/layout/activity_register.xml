@@ -23,7 +23,7 @@
         app:layout_constraintTop_toBottomOf="@+id/selectGroupText">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imer"
             android:layout_width="164dp"
             android:layout_height="261dp"
             android:layout_gravity="center"
@@ -33,7 +33,7 @@
             tools:layout_editor_absoluteY="199dp" />
 
         <TextView
-            android:id="@+id/clinicTextPrompt"
+            android:id="@+id/deleteUserText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
