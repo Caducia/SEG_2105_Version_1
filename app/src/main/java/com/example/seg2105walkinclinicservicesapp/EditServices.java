@@ -29,11 +29,17 @@ public class EditServices extends AppCompatActivity {
 
     private String email;
     private String password;
+
     private RecyclerView serviceList;
+    private LinearLayoutManager layoutManager;
+    private MyAdapter adapter;
+
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private DatabaseReference rDatabase;
     private ArrayList<Service> services = new ArrayList<Service>();
+
+    private String[] values;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,11 @@ public class EditServices extends AppCompatActivity {
         email = intent.getExtras().getString("email");
         password = intent.getExtras().getString("password");
 
-        serviceList = findViewById(R.id.serviceList);
+        // recycler view stuff
+        serviceList = (RecyclerView)findViewById(R.id.serviceList);
+        serviceList.setHasFixedSize(false);
+        layoutManager = new LinearLayoutManager(this);
+        serviceList.setLayoutManager(layoutManager);
 
         rDatabase = mDatabase.getReference("Services");
         Query query = rDatabase.orderByValue();
@@ -58,21 +68,9 @@ public class EditServices extends AppCompatActivity {
                     Service service = snapshot.getValue(Service.class);
                     services.add(service);
                     Toast.makeText(EditServices.this, service.getName(), Toast.LENGTH_SHORT).show();
-
-                }
-                String[] values = new String[services.size()];
-                for(int i = 0; i < services.size(); i++){
-                    Service holder = services.get(i);
-                    String val = holder.getName() + " : " + holder.getProvider();
-                    values[i] = val;
                 }
 
-//                MyAdapter adapter = new MyAdapter(values);
-//                ArrayAdapter<String> adapter = new ArrayAdapter<String>(EditServices.this,android.R.layout.simple_expandable_list_item_2, values);
-//                ArrayAdapter<>
-
-//                serviceList.setAdapter(adapter);
-
+                updateData();
             }
 
             @Override
@@ -82,6 +80,21 @@ public class EditServices extends AppCompatActivity {
         });
 
 
+        updateData();
+
+
+    }
+
+    public void updateData() {
+        values = new String[services.size()];
+        for(int i = 0; i < services.size(); i++){
+            Service holder = services.get(i);
+            String val = holder.getName() + " : " + holder.getProvider();
+            values[i] = val;
+        }
+
+        adapter = new MyAdapter(this.values);
+        serviceList.setAdapter(adapter);
     }
 
 }
