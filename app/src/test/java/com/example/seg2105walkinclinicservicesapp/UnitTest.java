@@ -34,7 +34,7 @@ public class UnitTest {
 
         assertEquals(actual,expected);
     }
-
+    @Test
     public void areSlotsAvalible_isCorrect2(){
         Timetable t = new Timetable();
 
@@ -43,6 +43,7 @@ public class UnitTest {
 
         assertEquals(actual,expected);
     }
+    @Test
     public void areSlotsAvalible_isCorrect3(){
         Timetable t = new Timetable();
 
@@ -51,7 +52,7 @@ public class UnitTest {
 
         assertEquals(actual,expected);
     }
-
+    @Test
     public void areSlotsAvalible_isCorrect4(){
         Timetable t = new Timetable();
 
@@ -60,7 +61,7 @@ public class UnitTest {
 
         assertEquals(actual,expected);
     }
-
+    @Test
     public void areSlotsAvalible_isCorrect5(){
         Timetable t = new Timetable();
 
@@ -69,7 +70,7 @@ public class UnitTest {
 
         assertEquals(actual,expected);
     }
-
+    @Test
     public void reserveSlots_isCorrect(){
         Timetable t = new Timetable();
         boolean actual = t.rSlots(4,5,"Tester1");
@@ -77,7 +78,7 @@ public class UnitTest {
 
         assertEquals(actual,expected);
     }
-
+    @Test
     public void reserveSlots_isCorrect2(){
         Timetable t = new Timetable();
         boolean actual = t.rSlots(4,6,"Tester1");
@@ -85,7 +86,7 @@ public class UnitTest {
 
         assertEquals(actual,expected);
     }
-
+    @Test
     public void reserveSlots_isCorrect3(){
         Timetable t = new Timetable();
 
