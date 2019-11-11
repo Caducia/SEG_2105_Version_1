@@ -30,4 +30,13 @@ public class Timetable {
             return true;
         }
     }
+    public boolean slotsOK(int t1, int t2){
+        Day d = new Day();
+       return d.areSlotsAvailable(t1,t2);
+    }
+
+    public boolean rSlots(int t1, int t2, String id){
+        Day d = new Day();
+        return d.reserveSlots(t1,t2,id);
+    }
 }
