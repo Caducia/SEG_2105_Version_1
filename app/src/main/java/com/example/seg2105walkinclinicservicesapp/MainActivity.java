@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
 
-
         final boolean login = false;
         user = null;
         mAuth = FirebaseAuth.getInstance();
@@ -84,10 +83,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
 //                            updateUI(null);
                         }
-
                     }
-
-
                 });
     }
 

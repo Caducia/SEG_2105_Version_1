@@ -65,20 +65,18 @@ public class WelcomeScreen extends AppCompatActivity {
         uniqueId = findViewById(R.id.uniqueId);
 
         //If user is already logged in
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-//                            Log.d(TAG, "signInWithEmail:success");
-//                            user = mAuth.getCurrentUser();
+                            // Log.d(TAG, "signInWithEmail:success");
+                            // user = mAuth.getCurrentUser();
                             Toast.makeText(WelcomeScreen.this, "Signed In.", Toast.LENGTH_SHORT).show();
                             user = mAuth.getCurrentUser();
                             uID = user.getUid();
                             email = user.getEmail();
-
-
 
                             try{
                                 rDatabase = mDatabase.getReference("Students");
@@ -136,7 +134,6 @@ public class WelcomeScreen extends AppCompatActivity {
                                     }
                                 });
 
-
                                 rDatabase = mDatabase.getReference("Administrators");
                                 query = rDatabase.orderByKey().equalTo(uID);
                                 query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -144,14 +141,16 @@ public class WelcomeScreen extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                                             if(snapshot.getKey().equals(uID)){
-                                                Admin admin = snapshot.getValue(Admin.class);
-
-                                                Intent loginIntent = new Intent(WelcomeScreen.this, AdminPage.class);
-                                                loginIntent.putExtra("email" , admin.getEmail());
-                                                loginIntent.putExtra("password" , admin.getaAminPassword());
-                                                startActivity(loginIntent);
+                                                Account adminAccount = snapshot.getValue(Account.class);
+                                                welcomeText = (TextView) findViewById(R.id.welcomeTextView);
+                                                String finalMessage = getString(R.string.welcome_text) + adminAccount.getFullName();
+                                                welcomeText.setText(finalMessage);
+                                                userType.setText("Admin");
+                                                fullName.setText("Name : " + adminAccount.getFullName());
+                                                uniqueId.setText("Number : " + adminAccount.getAccountID());
+                                                emailView.setText("Email : " + adminAccount.getEmailAddress());
+                                                phoneNumber.setText("Phone Number : "  + adminAccount.getPhoneNumber());
                                             }
-
                                         }
                                     }
 
@@ -168,9 +167,9 @@ public class WelcomeScreen extends AppCompatActivity {
 
                         } else {
                             // If sign in fails, display a message to the user.
-//                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            // Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(WelcomeScreen.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-//                            updateUI(null);
+                            // updateUI(null);
                         }
 
                     }
