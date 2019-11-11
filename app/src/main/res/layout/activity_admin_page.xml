@@ -31,7 +31,7 @@
             tools:layout_editor_absoluteY="199dp" />
 
         <TextView
-            android:id="@+id/addServiceText"
+            android:id="@+id/addServiceText1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

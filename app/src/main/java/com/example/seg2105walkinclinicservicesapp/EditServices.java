@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,18 +62,13 @@ public class EditServices extends AppCompatActivity {
                     Toast.makeText(EditServices.this, service.getName(), Toast.LENGTH_SHORT).show();
 
                 }
-                String[] values = new String[services.size()];
-                for(int i = 0; i < services.size(); i++){
-                    Service holder = services.get(i);
-                    String val = holder.getName() + " : " + holder.getProvider();
-                    values[i] = val;
-                }
 
-//                MyAdapter adapter = new MyAdapter(values);
-//                ArrayAdapter<String> adapter = new ArrayAdapter<String>(EditServices.this,android.R.layout.simple_expandable_list_item_2, values);
-//                ArrayAdapter<>
+                ServiceAdapter adapter = new ServiceAdapter(services);
+                // Attach the adapter to the recyclerview to populate items
+                serviceList.setAdapter(adapter);
+                // Set layout manager to position the items
+                serviceList.setLayoutManager(new LinearLayoutManager(EditServices.this));
 
-//                serviceList.setAdapter(adapter);
 
             }
 
@@ -81,6 +78,15 @@ public class EditServices extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void startUpdating(View v){
+        ViewHolder holder = new ViewHolder(v);
+        Intent loginIntent = new Intent(EditServices.this, UpdateServiceAdminPage.class);
+        loginIntent.putExtra("name", holder.nameTextView.getText().toString());
+        loginIntent.putExtra("provider" , holder.providerTextView.getText().toString());
+        v.getContext().startActivity(loginIntent);
 
     }
 
