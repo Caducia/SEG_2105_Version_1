@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UpdateServiceAdminPage"></activity>
+        <activity android:name=".ShowUsersAdminPage"></activity>
+        <activity android:name=".UpdateUsersAdminPage" />
+        <activity android:name=".UpdateServiceAdminPage" />
         <activity android:name=".EditServices" />
         <activity android:name=".addServiceAdminPage" />
         <activity android:name=".AdminPage" />

@@ -1,10 +1,17 @@
 package com.example.seg2105walkinclinicservicesapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class AdminPage extends AppCompatActivity {
 
@@ -34,4 +41,5 @@ public class AdminPage extends AppCompatActivity {
         addService.putExtra("password" , password);
         startActivity(addService);
     }
+
 }
