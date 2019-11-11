@@ -3,6 +3,7 @@ package com.example.seg2105walkinclinicservicesapp;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.view.*;
 
 import androidx.recyclerview.widget.RecyclerView;
 
