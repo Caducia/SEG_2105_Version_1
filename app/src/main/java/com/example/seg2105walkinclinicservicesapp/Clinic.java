@@ -42,11 +42,11 @@ public class Clinic {
         return clinicPassword;
     }
 
-    public Timetable getAvailability() {
+    public Timetable getTimetable() {
         return availability;
     }
 
-    public void setAvailability(int weekDay, boolean available, int firstSlot, int lastSlot) {
+    public void setOpenHours(int weekDay, boolean available, int firstSlot, int lastSlot) {
         Timetable.Week newSampleWeek = availability.new Week(0);
 
         if (!available) {
@@ -57,5 +57,9 @@ public class Clinic {
         }
 
         availability.setClinicOpenHours(newSampleWeek);
+    }
+
+    public Timetable.Week getOpenHours() {
+        return availability.getClinicOpenHours();
     }
 }
