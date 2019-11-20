@@ -1,5 +1,7 @@
 package com.example.seg2105walkinclinicservicesapp;
 
+import java.sql.Time;
+
 public class Clinic {
 
     private String clinicIDName;
@@ -44,4 +46,16 @@ public class Clinic {
         return availability;
     }
 
+    public void setAvailability(int weekDay, boolean available, int firstSlot, int lastSlot) {
+        Timetable.Week newSampleWeek = availability.new Week(0);
+
+        if (!available) {
+            newSampleWeek.reserveSlots(weekDay, firstSlot, lastSlot, "CLOSED");
+        }
+        else {
+            newSampleWeek.freeUpSlots(weekDay, firstSlot, lastSlot);
+        }
+
+        availability.setClinicOpenHours(newSampleWeek);
+    }
 }

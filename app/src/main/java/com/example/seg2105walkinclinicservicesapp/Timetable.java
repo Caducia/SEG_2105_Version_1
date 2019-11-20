@@ -8,6 +8,7 @@ public class Timetable {
 
     Week firstWeek;
     Week currentWeek;
+    private Week sampleWeek;
 
     private class Day {
         private String[] slots;
@@ -37,15 +38,21 @@ public class Timetable {
 
             return true;
         }
+
+        public void freeUpSlots(int firstSlot, int lastSlot) {
+            for (int i = firstSlot; i < lastSlot+1; i++) {
+                slots[i] = null;
+            }
+        }
     }
 
-    private class Week {
+    public class Week {
         private Day[] days;
         private Week nextWeek;
         private int weeksSinceJan6th2019;
 
         public Week(int weekNumber) {
-            days = new Day[7];
+            days = (sampleWeek != null) ? sampleWeek.days : new Day[7];
             nextWeek = null;
             weeksSinceJan6th2019 = weekNumber;
         }
@@ -65,6 +72,10 @@ public class Timetable {
         public boolean reserveSlots(int day, int firstSlot, int lastSlot, String patientID) {
             return days[day].reserveSlots(firstSlot, lastSlot, patientID);
         }
+
+        public void freeUpSlots(int day, int firstSlot, int lastSlot) {
+            days[day].freeUpSlots(firstSlot, lastSlot);
+        }
     }
 
     private class WeekAndDayNumber {
@@ -82,6 +93,10 @@ public class Timetable {
         currentWeek = weekAndDayNumberAtDate(LocalDate.now()).week;
     }
 
+    public Week getCurrentWeek() {
+        return weekAndDayNumberAtDate(LocalDate.now()).week;
+    }
+
     public boolean areSlotsAvailable(LocalDate date, int firstSlot, int lastSlot) {
         WeekAndDayNumber weekData = weekAndDayNumberAtDate(date);
         return weekData.week.areSlotsAvailable(weekData.dayNumber, firstSlot, lastSlot);
@@ -90,6 +105,19 @@ public class Timetable {
     public boolean reserveSlots(LocalDate date, int firstSlot, int lastSlot, String patientID) {
         WeekAndDayNumber weekData = weekAndDayNumberAtDate(date);
         return weekData.week.reserveSlots(weekData.dayNumber, firstSlot, lastSlot, patientID);
+    }
+
+    public void freeUpSlots(LocalDate date, int firstSlot, int lastSlot) {
+        WeekAndDayNumber weekData = weekAndDayNumberAtDate(date);
+        weekData.week.freeUpSlots(weekData.dayNumber, firstSlot, lastSlot);
+    }
+
+    public Week getClinicOpenHours() {
+        return sampleWeek;
+    }
+
+    public void setClinicOpenHours(Week sampleWeek) {
+        this.sampleWeek = sampleWeek;
     }
 
     private WeekAndDayNumber weekAndDayNumberAtDate(LocalDate date) {
