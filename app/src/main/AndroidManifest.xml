@@ -9,15 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowUsersAdminPage"></activity>
-        <activity android:name=".UpdateUsersAdminPage" />
-        <activity android:name=".UpdateServiceAdminPage" />
-        <activity android:name=".EditServices" />
-        <activity android:name=".addServiceAdminPage" />
-        <activity android:name=".AdminPage" />
+        <activity android:name=".ClinicPages.UpdateServicesProvidedActivity"></activity>
+        <activity android:name=".ClinicPages.EditClinicInfoActivity" />
+        <activity android:name=".PatientPages.EditPatientInfoPage" />
+        <activity android:name=".AdminPages.ShowUsersAdminPage" />
+        <activity android:name=".AdminPages.UpdateUsersAdminPage" />
+        <activity android:name=".AdminPages.UpdateServiceAdminPage" />
+        <activity android:name=".AdminPages.ListServicesAdmin" />
+        <activity android:name=".AdminPages.addServiceAdminPage" />
+        <activity android:name=".AdminPages.AdminPage" />
         <activity android:name=".WelcomeScreen" />
-        <activity android:name=".ClinicSignupActivity" />
-        <activity android:name=".PatientSignupActivity" />
+        <activity android:name=".ClinicPages.ClinicSignupActivity" />
+        <activity android:name=".PatientPages.PatientSignupActivity" />
         <activity android:name=".SelectRegistrationActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

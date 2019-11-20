@@ -1,17 +1,12 @@
-package com.example.seg2105walkinclinicservicesapp;
+package com.example.seg2105walkinclinicservicesapp.AdminPages;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.example.seg2105walkinclinicservicesapp.R;
 
 public class AdminPage extends AppCompatActivity {
 
@@ -36,10 +31,17 @@ public class AdminPage extends AppCompatActivity {
     }
 
     public void editServices(View v){
-        Intent addService = new Intent(AdminPage.this, EditServices.class);
-        addService.putExtra("email" , email);
-        addService.putExtra("password" , password);
-        startActivity(addService);
+        Intent editService = new Intent(AdminPage.this, ListServicesAdmin.class);
+        editService.putExtra("email" , email);
+        editService.putExtra("password" , password);
+        startActivity(editService);
+    }
+
+    public void editUsers(View v){
+        Intent editUser = new Intent(AdminPage.this, ShowUsersAdminPage.class);
+        editUser.putExtra("email" , email);
+        editUser.putExtra("password" , password);
+        startActivity(editUser);
     }
 
 }

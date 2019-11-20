@@ -1,6 +1,5 @@
-package com.example.seg2105walkinclinicservicesapp;
+package com.example.seg2105walkinclinicservicesapp.AdminPages;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -9,12 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.seg2105walkinclinicservicesapp.R;
+import com.example.seg2105walkinclinicservicesapp.Service;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,8 +27,8 @@ public class addServiceAdminPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_service_admin_page);
 
-        serviceProviderSpinner = findViewById(R.id.serviceProviderList);
-        serviceNameInput = findViewById(R.id.serviceName);
+        serviceProviderSpinner = findViewById(R.id.serviceProviderLister);
+        serviceNameInput = findViewById(R.id.serviceRename);
 
         mDatabase = FirebaseDatabase.getInstance();
         rDatabase = mDatabase.getReference("Services");

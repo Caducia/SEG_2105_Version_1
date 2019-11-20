@@ -5,27 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".addServiceAdminPage">
+    tools:context=".AdminPages.addServiceAdminPage">
 
     <TextView
         android:id="@+id/addServiceText21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
         android:text="Select a provider"
         android:textColor="@color/colorPrimary"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/serviceProviderList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serviceName"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/serviceRename" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/serviceRename"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="0"
         android:backgroundTint="@color/colorPrimary"
         android:hint="Service Name"
@@ -33,9 +32,9 @@
         android:textColorHint="@color/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addServiceText" />
+        app:layout_constraintTop_toBottomOf="@+id/addServiceText1" />
 
     <TextView
         android:id="@+id/addServiceText1"
@@ -58,11 +57,11 @@
         android:id="@+id/serviceProviderLister"
         android:layout_width="409dp"
         android:layout_height="40dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/dropdownicon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serviceName" />
+        app:layout_constraintTop_toBottomOf="@+id/addServiceText21" />
 
     <Button
         android:id="@+id/doneUpdatingButton"

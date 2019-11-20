@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".UpdateUsersAdminPage">
+    tools:context=".AdminPages.UpdateUsersAdminPage">
 
     <TextView
         android:id="@+id/addServiceText4"
@@ -16,14 +16,13 @@
         android:textColor="@color/colorPrimary"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/serviceProviderLister3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serviceRename3" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/serviceRename3"
+        android:id="@+id/patientFirstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="44dp"
         android:layout_weight="0"
         android:backgroundTint="@color/colorPrimary"
         android:hint="Service Name"
@@ -33,10 +32,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addServiceText5" />
+        app:layout_constraintTop_toBottomOf="@+id/modifyUserInfoTitle" />
 
     <TextView
-        android:id="@+id/addServiceText5"
+        android:id="@+id/modifyUserInfoTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

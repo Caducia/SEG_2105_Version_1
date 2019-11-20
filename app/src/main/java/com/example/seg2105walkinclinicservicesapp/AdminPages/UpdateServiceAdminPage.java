@@ -1,8 +1,7 @@
-package com.example.seg2105walkinclinicservicesapp;
+package com.example.seg2105walkinclinicservicesapp.AdminPages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.seg2105walkinclinicservicesapp.R;
+import com.example.seg2105walkinclinicservicesapp.Service;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

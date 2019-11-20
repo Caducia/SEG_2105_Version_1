@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.example.seg2105walkinclinicservicesapp.ClinicPages.ClinicSignupActivity;
+import com.example.seg2105walkinclinicservicesapp.PatientPages.PatientSignupActivity;
+
 public class SelectRegistrationActivity extends AppCompatActivity {
 
     private Button returnButton;

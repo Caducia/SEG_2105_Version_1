@@ -1,13 +1,16 @@
-package com.example.seg2105walkinclinicservicesapp;
+package com.example.seg2105walkinclinicservicesapp.AdminPages;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.seg2105walkinclinicservicesapp.Clinic;
+import com.example.seg2105walkinclinicservicesapp.Patient;
+import com.example.seg2105walkinclinicservicesapp.R;
 
 import java.util.List;
 
@@ -16,24 +19,24 @@ import androidx.recyclerview.widget.RecyclerView;
 // Create the basic adapter extending from RecyclerView.Adapter
 // Note that we specify the custom ViewHolder which gives us access to our views
 
-public class ServiceAdapter extends
-        RecyclerView.Adapter<ServiceAdapter.ViewHolder> {
+public class PatientAdapter extends
+        RecyclerView.Adapter<PatientAdapter.ViewHolder> {
 
     // Store a member variable for the contacts
-    private List<Service> services;
+    private List<Patient> patients;
 
     // Pass in the contact array into the constructor
-    public ServiceAdapter(List<Service> services) {
-        this.services = services;
+    public PatientAdapter(List<Patient> patient) {
+        this.patients = patient;
     }
 
     @Override
-    public ServiceAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PatientAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View serviceView = inflater.inflate(R.layout.service_entry, parent, false);
+        View serviceView = inflater.inflate(R.layout.better_service_entry, parent, false);
 
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(serviceView);
@@ -42,18 +45,18 @@ public class ServiceAdapter extends
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(ServiceAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(ViewHolder viewHolder, int position) {
         // Get the data model based on position
-        Service serviceHolder = services.get(position);
+        Patient serviceHolder = patients.get(position);
 
         // Set item views based on your views and data model
         TextView serviceView = viewHolder.nameTextView;
-        serviceView.setText(serviceHolder.getName());
+        serviceView.setText(serviceHolder.getFirstName());
 
-        TextView providerView = viewHolder.providerTextView;
-        providerView.setText(serviceHolder.getProvider());
+        TextView providerView = viewHolder.studentNumberTextView;
+        providerView.setText(serviceHolder.getStudentNo());
 
-        CheckBox checkBox = viewHolder.selectedService;
+        CheckBox checkBox = viewHolder.selected;
         checkBox.setSelected(false);
 //        button.setText(contact.isOnline() ? "Message" : "Offline");
 //        button.setEnabled(serviceHolder.isOnline());
@@ -62,7 +65,7 @@ public class ServiceAdapter extends
     // Returns the total count of items in the list
     @Override
     public int getItemCount() {
-        return services.size();
+        return patients.size();
     }
 
     // Provide a direct reference to each of the views within a data item
@@ -71,8 +74,9 @@ public class ServiceAdapter extends
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView nameTextView;
-        public TextView providerTextView;
-        public CheckBox selectedService;
+        public TextView studentNumberTextView;
+        public Spinner paymentsAvailable;
+        public CheckBox selected;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -81,9 +85,10 @@ public class ServiceAdapter extends
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            nameTextView = (TextView) itemView.findViewById(R.id.service_name);
-            providerTextView = (TextView) itemView.findViewById(R.id.provider_text);
-            selectedService = (CheckBox) itemView.findViewById(R.id.selected);
+            nameTextView = (TextView) itemView.findViewById(R.id.service_name_field);
+            studentNumberTextView = (TextView) itemView.findViewById(R.id.rate_text_view);
+            paymentsAvailable = (Spinner) itemView.findViewById((R.id.staffSpinner));
+            selected = (CheckBox) itemView.findViewById(R.id.selectedCheck);
 
         }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".AdminPage">
+    tools:context=".AdminPages.AdminPage">
 
 
     <LinearLayout
@@ -43,12 +43,13 @@
 
 
     <LinearLayout
-        android:id="@+id/deletingUser"
+        android:id="@+id/editingUser"
         android:layout_width="373dp"
         android:layout_height="71dp"
         android:layout_marginTop="9dp"
         android:layout_marginBottom="384dp"
         android:background="@drawable/linearlayoutborder"
+        android:onClick="editUsers"
         app:layout_constraintBottom_toTopOf="@+id/returnButton2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.421"
@@ -71,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Delete User"
+            android:text="Edit User"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp" />
     </LinearLayout>
@@ -86,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletingUser"
+        app:layout_constraintTop_toBottomOf="@+id/editingUser"
         app:layout_constraintVertical_bias="0.032">
 
         <ImageView

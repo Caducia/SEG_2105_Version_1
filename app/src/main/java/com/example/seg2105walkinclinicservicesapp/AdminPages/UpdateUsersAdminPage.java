@@ -1,4 +1,4 @@
-package com.example.seg2105walkinclinicservicesapp;
+package com.example.seg2105walkinclinicservicesapp.AdminPages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,9 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.seg2105walkinclinicservicesapp.R;
+import com.example.seg2105walkinclinicservicesapp.Service;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -32,6 +33,7 @@ public class UpdateUsersAdminPage extends AppCompatActivity {
     private FirebaseDatabase mDatabase;
     private DatabaseReference rDatabase;
     private FirebaseAuth mAuth;
+    private String directory;
 
     private TextInputEditText serviceNameInput;
     private Spinner providerSpinner;
@@ -42,6 +44,7 @@ public class UpdateUsersAdminPage extends AppCompatActivity {
         setContentView(R.layout.activity_update_service_admin_page);
 
         mDatabase = FirebaseDatabase.getInstance();
+        directory = "Students";
 
         Intent intent = getIntent();
         email = intent.getExtras().getString("email");
@@ -65,13 +68,13 @@ public class UpdateUsersAdminPage extends AppCompatActivity {
                     // Sign in success, update UI with the signed-in user's information
                     // Log.d(TAG, "signInWithEmail:success");
                     // user = mAuth.getCurrentUser();
-                    Toast.makeText(UpdateUsersAdminPage.this, "Signed In.", Toast.LENGTH_SHORT).show();
+
                     FirebaseUser user = mAuth.getCurrentUser();
-                    String uID = user.getUid();
+                    final String uID = user.getUid();
                     email = user.getEmail();
 
                     try{
-                        rDatabase = mDatabase.getReference("Students");
+                        rDatabase = mDatabase.getReference(directory);
                         Query query = rDatabase.orderByKey().equalTo(uID);
                         query.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -105,7 +108,7 @@ public class UpdateUsersAdminPage extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-//                                    if(snapshot.getKey().equals(uID)){
+                                     if(snapshot.getKey().equals(uID)){
 //                                        Clinic clinic = snapshot.getValue(Clinic.class);
 //                                        welcomeText = (TextView) findViewById(R.id.welcomeTextView);
 //                                        String finalMessage = getString(R.string.welcome_text) + clinic.getClinicName();
@@ -115,7 +118,7 @@ public class UpdateUsersAdminPage extends AppCompatActivity {
 //                                        uniqueId.setText("Number : " + clinic.getClinicID());
 //                                        emailView.setText("Email : " + clinic.getClinicEmail());
 //                                        phoneNumber.setText("Phone Number : "  + clinic.getClinicPhone());
-//                                    }
+                                      }
 
                                 }
                             }

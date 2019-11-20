@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/service_name_field"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="#DBECFA" />
+
+    <TextView
+        android:id="@+id/rate_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="#DBECFA" />
+
+    <Spinner
+        android:id="@+id/staffSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:gravity="center" />
+
+    <CheckBox
+        android:id="@+id/selectedCheck"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:button="@drawable/common_google_signin_btn_icon_light_normal_background" />
+</LinearLayout>

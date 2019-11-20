@@ -1,4 +1,4 @@
-package com.example.seg2105walkinclinicservicesapp;
+package com.example.seg2105walkinclinicservicesapp.AdminPages;
 
 public class Admin {
     private String employeeID;

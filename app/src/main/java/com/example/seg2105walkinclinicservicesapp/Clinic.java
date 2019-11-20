@@ -1,5 +1,7 @@
 package com.example.seg2105walkinclinicservicesapp;
 
+import java.util.ArrayList;
+
 public class Clinic {
 
     private String clinicIDName;
@@ -7,10 +9,19 @@ public class Clinic {
     private String clinicEmail;
     private String clinicPhone;
     private String clinicPassword;
+    private ArrayList<Service> servicesOffered;
 
     public Clinic(){}
 
     public Clinic(String clinicIDName, String clinicName, String clinicEmail, String clinicPhone, String clinicPassword){
+        this.clinicIDName = clinicIDName;
+        this.clinicName = clinicName;
+        this.clinicEmail = clinicEmail;
+        this.clinicPhone = clinicPhone;
+        this.clinicPassword = clinicPassword;
+    }
+
+    public Clinic(String clinicIDName, String clinicName, String clinicEmail, String clinicPhone, String clinicPassword, ArrayList<Service> servicesOffered ){
         this.clinicIDName = clinicIDName;
         this.clinicName = clinicName;
         this.clinicEmail = clinicEmail;
