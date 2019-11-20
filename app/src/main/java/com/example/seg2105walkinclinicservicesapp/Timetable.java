@@ -38,7 +38,7 @@ public class Timetable {
         return sampleWeek;
     }
 
-    public void setClinicOpenHours(Week sampleWeek) {
+    public void setWorkingHours(Week sampleWeek) {
         this.sampleWeek = sampleWeek;
     }
 

@@ -53,7 +53,6 @@ public class Clinic {
             newSampleWeek = availability.new Week(0);
         }
 
-
         if (!available) {
             newSampleWeek.reserveSlots(weekDay, firstSlot, lastSlot, "CLOSED");
         }
@@ -61,7 +60,7 @@ public class Clinic {
             newSampleWeek.freeUpSlots(weekDay, firstSlot, lastSlot);
         }
 
-        availability.setClinicOpenHours(newSampleWeek);
+        availability.setWorkingHours(newSampleWeek);
     }
 
     public Timetable.Week getOpenHours() {
