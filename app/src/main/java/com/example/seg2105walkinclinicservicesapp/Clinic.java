@@ -46,8 +46,13 @@ public class Clinic {
         return availability;
     }
 
-    public void setOpenHours(int weekDay, boolean available, int firstSlot, int lastSlot) {
-        Timetable.Week newSampleWeek = availability.new Week(0);
+    public void setOpenHours(int weekDay, int firstSlot, int lastSlot, boolean available, boolean resetHours) {
+        Timetable.Week newSampleWeek = availability.getClinicOpenHours();
+
+        if (resetHours || newSampleWeek == null) {
+            newSampleWeek = availability.new Week(0);
+        }
+
 
         if (!available) {
             newSampleWeek.reserveSlots(weekDay, firstSlot, lastSlot, "CLOSED");
