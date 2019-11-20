@@ -34,7 +34,7 @@ public class Timetable {
         weekData.week.freeUpSlots(weekData.dayNumber, firstSlot, lastSlot);
     }
 
-    public Week getClinicOpenHours() {
+    public Week getWorkingHours() {
         return sampleWeek;
     }
 
