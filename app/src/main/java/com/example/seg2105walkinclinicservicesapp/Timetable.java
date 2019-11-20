@@ -1,6 +1,14 @@
 package com.example.seg2105walkinclinicservicesapp;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+
 public class Timetable {
+
+    Week firstWeek;
+    Week currentWeek;
+
     private class Day {
         private String[] slots;
 
@@ -30,13 +38,80 @@ public class Timetable {
             return true;
         }
     }
-    public boolean slotsOK(int t1, int t2){
-        Day d = new Day();
-       return d.areSlotsAvailable(t1,t2);
+
+    private class Week {
+        private Day[] days;
+        private Week nextWeek;
+        private int weeksSinceJan6th2019;
+
+        public Week(int weekNumber) {
+            days = new Day[7];
+            nextWeek = null;
+            weeksSinceJan6th2019 = weekNumber;
+        }
+
+        public Week nextWeek() {
+            if (nextWeek == null){
+                nextWeek = new Week(weeksSinceJan6th2019+1);
+            }
+
+            return nextWeek;
+        }
+
+        public boolean areSlotsAvailable(int day, int firstSlot, int lastSlot) {
+            return days[day].areSlotsAvailable(firstSlot, lastSlot);
+        }
+
+        public boolean reserveSlots(int day, int firstSlot, int lastSlot, String patientID) {
+            return days[day].reserveSlots(firstSlot, lastSlot, patientID);
+        }
     }
 
-    public boolean rSlots(int t1, int t2, String id){
-        Day d = new Day();
-        return d.reserveSlots(t1,t2,id);
+    private class WeekAndDayNumber {
+        int dayNumber;
+        Week week;
+
+        public WeekAndDayNumber(Week week, int dayNumber) {
+            this.dayNumber = dayNumber;
+            this.week = week;
+        }
+    }
+
+    public Timetable() {
+        firstWeek = new Week(0);
+        currentWeek = weekAndDayNumberAtDate(LocalDate.now()).week;
+    }
+
+    public boolean areSlotsAvailable(LocalDate date, int firstSlot, int lastSlot) {
+        WeekAndDayNumber weekData = weekAndDayNumberAtDate(date);
+        return weekData.week.areSlotsAvailable(weekData.dayNumber, firstSlot, lastSlot);
+    }
+
+    public boolean reserveSlots(LocalDate date, int firstSlot, int lastSlot, String patientID) {
+        WeekAndDayNumber weekData = weekAndDayNumberAtDate(date);
+        return weekData.week.reserveSlots(weekData.dayNumber, firstSlot, lastSlot, patientID);
+    }
+
+    private WeekAndDayNumber weekAndDayNumberAtDate(LocalDate date) {
+        long days = daysSinceFirstDate(date);
+
+        Week loopedWeek = firstWeek;
+
+        long remaining = days;
+
+        while (remaining > 0) {
+            remaining -= 7;
+
+            if (remaining > 0) {
+                loopedWeek = loopedWeek.nextWeek();
+            }
+        }
+
+        return new WeekAndDayNumber(loopedWeek, 7 + (int)remaining);
+    }
+
+    private long daysSinceFirstDate(LocalDate newDate) {
+        LocalDate originalDate = LocalDate.of(2019,01,06);
+        return ChronoUnit.DAYS.between(originalDate, newDate);
     }
 }

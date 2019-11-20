@@ -8,6 +8,8 @@ public class Clinic {
     private String clinicPhone;
     private String clinicPassword;
 
+    private Timetable availability;
+
     public Clinic(){}
 
     public Clinic(String clinicIDName, String clinicName, String clinicEmail, String clinicPhone, String clinicPassword){
@@ -36,6 +38,10 @@ public class Clinic {
 
     public String getClinicPassword() {
         return clinicPassword;
+    }
+
+    public Timetable getAvailability() {
+        return availability;
     }
 
 }
