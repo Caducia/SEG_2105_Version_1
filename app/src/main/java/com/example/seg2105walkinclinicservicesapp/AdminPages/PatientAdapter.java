@@ -1,6 +1,7 @@
 package com.example.seg2105walkinclinicservicesapp.AdminPages;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class PatientAdapter extends
 
     // Store a member variable for the contacts
     private List<Patient> patients;
+    private Context context;
 
     // Pass in the contact array into the constructor
     public PatientAdapter(List<Patient> patient) {
@@ -32,7 +34,7 @@ public class PatientAdapter extends
 
     @Override
     public PatientAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
@@ -58,6 +60,16 @@ public class PatientAdapter extends
 
         CheckBox checkBox = viewHolder.selected;
         checkBox.setSelected(false);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent loginIntent = new Intent(context, UpdateUsersAdminPage.class);
+//                loginIntent.putExtra("service" , viewHolder.nameTextView.getText().toString());
+//                loginIntent.putExtra("provider" , viewHolder.studentNumberTextView.getText().toString());
+                context.startActivity(loginIntent);
+            }
+        });
 //        button.setText(contact.isOnline() ? "Message" : "Offline");
 //        button.setEnabled(serviceHolder.isOnline());
     }

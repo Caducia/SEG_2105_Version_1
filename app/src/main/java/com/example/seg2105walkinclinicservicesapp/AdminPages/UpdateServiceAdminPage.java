@@ -39,12 +39,14 @@ public class UpdateServiceAdminPage extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
 
         Intent intent = getIntent();
-        serviceName = intent.getExtras().getString("name");
+        serviceName = intent.getExtras().getString("service");
         provider = intent.getExtras().getString("provider");
 
         serviceNameInput = findViewById(R.id.serviceRename);
         providerSpinner = findViewById(R.id.serviceProviderLister);
 
+        serviceNameInput.setText(serviceName);
+//        providerSpinner.setText(serviceName);
         String[] providers = new String[]{"Doctor", "Nurse", "Staff"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, providers);
 //set the spinners adapter to the previously created one.

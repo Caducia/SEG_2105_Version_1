@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    class = "com.example.seg2105walkinclinicservicesapp.SupportFiles.RowEntry"
     android:id="@+id/containerService"
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:gravity="center_horizontal">
 
     <TextView
-        android:id="@+id/service_name_field"
-        android:layout_width="match_parent"
+        android:id="@+id/text_view"
+        android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:textColor="#DBECFA" />
+        android:textColor="#DBECFA"
+        android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/rate_text_view"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/numeric_entry"
+        android:layout_width="25dp"
         android:layout_height="50dp"
         android:layout_weight="1"
-        android:gravity="center"
-        android:textColor="#DBECFA" />
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textColor="#FFFDFD" />
 
     <Spinner
-        android:id="@+id/staffSpinner"
-        android:layout_width="match_parent"
+        android:id="@+id/option_spinner"
+        android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_weight="1"
         android:gravity="center" />
 
     <CheckBox
-        android:id="@+id/selectedCheck"
-        android:layout_width="match_parent"
+        android:id="@+id/selection_checkbox"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_weight="1"
         android:button="@drawable/common_google_signin_btn_icon_light_normal_background" />

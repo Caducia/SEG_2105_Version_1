@@ -8,6 +8,7 @@
     tools:context=".WelcomeScreen">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginStart="8dp"
@@ -59,4 +60,37 @@
             android:layout_height="wrap_content"
             android:text="TextView" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/clinicUpdateServiceButton"
+        android:layout_width="373dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="72dp"
+        android:background="@drawable/linearlayoutborder"
+        android:onClick="loadUpdatingServices"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ImageView
+            android:id="@+id/secondImage"
+            android:layout_width="46dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:src="@drawable/caduceusclinic"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="199dp" />
+
+        <TextView
+            android:id="@+id/addServiceText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Update Services"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

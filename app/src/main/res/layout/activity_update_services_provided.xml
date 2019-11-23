@@ -12,33 +12,33 @@
         android:layout_width="304dp"
         android:layout_height="49dp"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="52dp"
+        android:layout_marginBottom="24dp"
         android:layout_weight="1"
         android:background="@drawable/loginbutton"
         android:text="Delete"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/doneEditingServiceButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.963"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userList" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/doneEditingClinicButton"
+        android:id="@+id/doneEditingServiceButton"
         android:layout_width="304dp"
         android:layout_height="49dp"
         android:layout_gravity="center"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:layout_weight="1"
         android:background="@drawable/roundedbutton"
         android:text="Done"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editServiceButtonClinic" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/updateServicesTitle"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Switch
-        android:id="@+id/userTypeSwitch"
+        android:id="@+id/serviceTypeSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -72,14 +72,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/updateServicesTitle" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/userList"
-        android:layout_width="364dp"
-        android:layout_height="391dp"
-        android:layout_marginTop="28dp"
+    <ListView
+        android:id="@+id/serviceList"
+        android:layout_width="409dp"
+        android:layout_height="458dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userTypeSwitch" />
+        app:layout_constraintTop_toBottomOf="@+id/serviceTypeSwitch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

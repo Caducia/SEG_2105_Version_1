@@ -8,17 +8,17 @@
     tools:context=".AdminPages.UpdateServiceAdminPage">
 
     <TextView
-        android:id="@+id/addServiceText21"
+        android:id="@+id/addingStuff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:text="Select a provider"
         android:textColor="@color/colorPrimary"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/serviceProviderList"
+        app:layout_constraintBottom_toTopOf="@+id/serviceProviderLister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serviceRename" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/serviceRename"

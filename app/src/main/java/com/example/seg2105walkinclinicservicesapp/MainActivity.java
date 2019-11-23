@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Authentication passed.", Toast.LENGTH_SHORT).show();
 //                            updateUI(user);
 //                            login = false;
-                            Intent loginIntent = new Intent(MainActivity.this, AdminPage.class);
+                            Intent loginIntent = new Intent(MainActivity.this, WelcomeScreen.class);
                             loginIntent.putExtra("email" , emailInput.getText().toString());
                             loginIntent.putExtra("password" , passwordInput.getText().toString());
                             startActivity(loginIntent);

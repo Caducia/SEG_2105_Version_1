@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.seg2105walkinclinicservicesapp.R;
 import com.example.seg2105walkinclinicservicesapp.Service;
+import com.example.seg2105walkinclinicservicesapp.SupportFiles.AppContextHolder;
 import com.example.seg2105walkinclinicservicesapp.ViewHolder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -60,11 +62,14 @@ public class ListServicesAdmin extends AppCompatActivity {
 
                 }
 
-                ServiceAdapter adapter = new ServiceAdapter(services);
+                ServiceAdapterAdmin adapter = new ServiceAdapterAdmin(services);
                 // Attach the adapter to the recyclerview to populate items
                 serviceList.setAdapter(adapter);
                 // Set layout manager to position the items
                 serviceList.setLayoutManager(new LinearLayoutManager(ListServicesAdmin.this));
+
+
+
 
 
             }

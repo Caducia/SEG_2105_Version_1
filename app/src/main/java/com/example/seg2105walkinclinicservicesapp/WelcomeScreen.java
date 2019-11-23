@@ -6,9 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.seg2105walkinclinicservicesapp.AdminPages.AdminPage;
+import com.example.seg2105walkinclinicservicesapp.ClinicPages.UpdateServicesProvidedActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -45,11 +50,17 @@ public class WelcomeScreen extends AppCompatActivity {
     private TextView emailView;
     private TextView uniqueId;
 
+    private String userID;
+
+    private LinearLayout updateServicesButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
+
+        updateServicesButton = findViewById(R.id.clinicUpdateServiceButton);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
@@ -95,6 +106,7 @@ public class WelcomeScreen extends AppCompatActivity {
                                                 uniqueId.setText("Number : " + patient.getStudentNo());
                                                 emailView.setText("Email : " + patient.getEmail());
                                                 phoneNumber.setText("Phone Number : "  + patient.getPhoneNumber());
+                                                updateServicesButton.setVisibility(View.INVISIBLE);
 
                                             }
 
@@ -123,6 +135,9 @@ public class WelcomeScreen extends AppCompatActivity {
                                                 uniqueId.setText("Number : " + clinic.getClinicID());
                                                 emailView.setText("Email : " + clinic.getClinicEmail());
                                                 phoneNumber.setText("Phone Number : "  + clinic.getClinicPhone());
+                                                userID = clinic.getClinicID();
+
+
                                             }
 
                                         }
@@ -141,15 +156,10 @@ public class WelcomeScreen extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                                             if(snapshot.getKey().equals(uID)){
-                                                Account adminAccount = snapshot.getValue(Account.class);
-                                                welcomeText = (TextView) findViewById(R.id.welcomeTextView);
-                                                String finalMessage = getString(R.string.welcome_text) + adminAccount.getFullName();
-                                                welcomeText.setText(finalMessage);
-                                                userType.setText("Admin");
-                                                fullName.setText("Name : " + adminAccount.getFullName());
-                                                uniqueId.setText("Number : " + adminAccount.getAccountID());
-                                                emailView.setText("Email : " + adminAccount.getEmailAddress());
-                                                phoneNumber.setText("Phone Number : "  + adminAccount.getPhoneNumber());
+                                                Intent loginIntent = new Intent(WelcomeScreen.this, AdminPage.class);
+                                                loginIntent.putExtra("email" , email);
+                                                loginIntent.putExtra("password" , password);
+                                                startActivity(loginIntent);
                                             }
                                         }
                                     }
@@ -185,5 +195,12 @@ public class WelcomeScreen extends AppCompatActivity {
 
 
 
+    }
+
+    public void loadUpdatingServices(View v){
+        Intent loginIntent = new Intent(WelcomeScreen.this, UpdateServicesProvidedActivity.class);
+        loginIntent.putExtra("email" , email);
+        loginIntent.putExtra("clinicID" , userID);
+        startActivity(loginIntent);
     }
 }
