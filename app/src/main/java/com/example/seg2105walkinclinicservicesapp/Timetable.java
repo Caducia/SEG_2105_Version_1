@@ -13,6 +13,7 @@ public class Timetable {
     public Timetable() {
         firstWeek = new Week(0);
         currentWeek = weekAndDayNumberAtDate(LocalDate.now()).week;
+        sampleWeek = null;
     }
 
     public Week getCurrentWeek() {
@@ -84,9 +85,19 @@ public class Timetable {
         private int weeksSinceJan6th2019;
 
         public Week(int weekNumber) {
-            days = (sampleWeek != null) ? sampleWeek.days : new Day[7];
+            days = (sampleWeek != null) ? sampleWeek.days : presetDayArray(7);
             nextWeek = null;
             weeksSinceJan6th2019 = weekNumber;
+        }
+
+        private Day[] presetDayArray(int size) {
+            Day[] dayArray = new Day[size];
+
+            for (int i = 0; i < size; i++) {
+                dayArray[i] = new Day();
+            }
+
+            return dayArray;
         }
 
         public Week nextWeek() {
